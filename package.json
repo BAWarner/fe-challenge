@@ -17,11 +17,13 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "apollo-link-state": "^0.4.2",
+    "axios": "^0.21.4",
     "json-graphql-server": "^2.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-select": "^4.3.1",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
