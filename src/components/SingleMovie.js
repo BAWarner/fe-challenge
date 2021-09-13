@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import backArrow from '../assets/BackArrow.svg';
 import starRating from '../assets/Star.svg';
 import axios from 'axios';
+import Header from './Header';
 
 class SingleMovie extends Component{
     constructor(){
@@ -49,6 +50,7 @@ class SingleMovie extends Component{
         let { goBack } = this.props.history;
         return(
             <>
+                <Header />
                 <div className='container'>
                     <Link to='#' onClick={ goBack }>
                         <img src={backArrow} alt='Back'/>

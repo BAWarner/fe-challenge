@@ -4,6 +4,7 @@ import MoviePoster from 'components/MoviePoster';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import backArrow from '../assets/BackArrow.svg';
+import Header from './Header';
 
 class SingleGenre extends Component{
     constructor(){
@@ -99,32 +100,35 @@ class SingleGenre extends Component{
             { value: 'newDate', label: 'Release Date (New to Old)' }
         ];
         return(
-            <div className='container bgDots'>
-                <div className='row'>
-                    <div className='flex-50'>
-                        <Link to='#' onClick={ this.props.history.goBack }>
-                            <img src={backArrow} alt='Back'/>
-                        </Link>
-                        <span className='grey inline'>Movies:</span>
-                        <h2 className='mrg-left-10 inline'>{ genreTitle }</h2>
-                    </div>
-                    <div className='flex-50'>
-                        <span className='grey inline'>Sort By:</span>
-                        <Select className='inline selectStyles' options={ filterOptions } onChange={ e => this.sortMovies( e.value ) } />
-                    </div>
-                </div>
-                {
-                    loading ? (
-                        <span>Loading Movies...</span>
-                    ) : (
-                        <div className='row browseWrap mrg-top-60'>
-                            {
-                                moviesByGenre.map( movie => <MoviePoster movie={movie} key={movie.id} /> ) 
-                            }
+            <>
+                <Header/>
+                <div className='container bgDots'>
+                    <div className='row'>
+                        <div className='flex-50'>
+                            <Link to='#' onClick={ this.props.history.goBack }>
+                                <img src={backArrow} alt='Back'/>
+                            </Link>
+                            <span className='grey inline'>Movies:</span>
+                            <h2 className='mrg-left-10 inline'>{ genreTitle }</h2>
                         </div>
-                    )
-                }
-            </div>
+                        <div className='flex-50'>
+                            <span className='grey inline'>Sort By:</span>
+                            <Select className='inline selectStyles' options={ filterOptions } onChange={ e => this.sortMovies( e.value ) } />
+                        </div>
+                    </div>
+                    {
+                        loading ? (
+                            <span>Loading Movies...</span>
+                        ) : (
+                            <div className='row browseWrap mrg-top-60'>
+                                {
+                                    moviesByGenre.map( movie => <MoviePoster movie={movie} key={movie.id} /> ) 
+                                }
+                            </div>
+                        )
+                    }
+                </div>
+            </>
         );
     }
 }

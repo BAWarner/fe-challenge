@@ -1,5 +1,6 @@
 import './Home.css';
 import { useFetchAllMovies } from './rest';
+import Header from 'components/Header';
 import BrowseAll from 'components/BrowseAll';
 import PopularList from 'components/PopularList';
 import GenreList from 'components/GenreList';
@@ -23,20 +24,23 @@ const Home = ( props ) => {
   
 
   return (
-    <div className="home-container">
-      <PopularList movies={ data } />
-      <GenreList genres={ genreArr }/>
+    <>
+      <Header />
+      <div className="home-container">
+        <PopularList movies={ data } />
+        <GenreList genres={ genreArr }/>
 
-      { loading ? (
-        <div>Loading movies...</div>
-        ) : (
-          <div className='container mrg-top-30'>
-            <div className='flex-100 row spaceBetween'>
-              <BrowseAll movies={ data } />
+        { loading ? (
+          <div>Loading movies...</div>
+          ) : (
+            <div className='container mrg-top-30'>
+              <div className='flex-100 row spaceBetween'>
+                <BrowseAll movies={ data } />
+              </div>
             </div>
-          </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
