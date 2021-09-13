@@ -1,5 +1,7 @@
 import Home from './Home';
 import { Route, Switch } from 'react-router-dom';
+import SingleMovie from 'components/SingleMovie';
+import SingleGenre from 'components/SingleGenre';
 
 /**
  * This function is used to simulate performance benchmarking.
@@ -26,6 +28,8 @@ const App = () => {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/movie/:id" component={SingleMovie} />
+      <Route path="/genre/:title" component={SingleGenre} />
     </Switch>
   );
 };
