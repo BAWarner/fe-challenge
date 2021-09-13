@@ -7,7 +7,9 @@
 		background: white;
 		color: #333;
 	}
-
+	a{
+		text-decoration: none;
+	}
 	body {
 		margin: 0;
 		padding: 0;
@@ -56,6 +58,13 @@
 
 	.container{
 		padding: 56px 65px;
+	}
+	.container.calcWidth{
+		padding-left: calc(65px - 2%);
+		padding-right: calc(65px - 2%);
+	}
+	.container.calcWidth > span{
+		padding-left: 2%;
 	}
 	.block{
 		display: block;
@@ -135,6 +144,7 @@
 	.popularWrap{
 		padding-bottom: 64px;
 	}
+	.posterLightbox button,
 	.popularPoster button{
 		background-color: #2245e1;
 		color: #ffffff;
@@ -174,7 +184,7 @@
 	}
 	@media (min-width: 500px) and (max-width: 774px) {
 		.popularPoster,
-		.browseWrap > a{
+		.moviePoster{
 			flex-basis: 43.5%;
 		}
 		.castMember{
@@ -192,9 +202,9 @@
 		}
 	}
 	@media screen and (min-width: 775px) {
-		.browseWrap > a{
-			flex-basis: 18%;
-			padding-right: 2%;
+		.browseWrap .moviePoster{
+			max-width: 280px;
+			margin-right: 20px;
 		}
 		.popularPoster{
 			flex-basis: 16%;
@@ -215,6 +225,46 @@
 		}
 	}
 
+	.posterLightbox{
+		position: fixed;
+		background-color: rgba(0,0,0,0.4);
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		z-index: 12;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.posterLightbox .posterWrap{
+		background-color: #ffffff;
+		border-radius: 6px;
+		position: relative;
+		padding: 50px;
+	}
+	.posterLightbox .moviePoster{
+		margin: 0 auto 25px;
+		padding-right: 0;
+	}
+	.posterLightbox span{
+		display: block;
+	}
+	.posterLightbox .genreList{
+		margin-top: 15px;
+	}
+	.posterLightbox .genreList,
+	.posterLightbox .movieTitle{
+		max-width: 250px;
+	}
+	.closeLightbox{
+		cursor: pointer;
+		position: absolute;
+		top: 10px;
+		right: 25px;
+		font-size: 30px;
+		text-shadow: 2px 2px rgb(0 0 0 / 30%);
+	}
 	img[alt='Star Rating']{
 		margin-right: 10px;
 	}
@@ -234,12 +284,12 @@
 		border: unset;
 		cursor: pointer;
 	}
-
 	.moviePoster{
 		border-radius: 6px;
 		box-shadow: 0px 2px 10px 4px rgba(0,0,0,0.25);
 		margin-bottom: 15px;
 		cursor: pointer;
+		display: block;
 	}
 	.noShadow .moviePoster{
 		box-shadow: unset;

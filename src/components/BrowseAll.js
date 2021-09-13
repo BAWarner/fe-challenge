@@ -47,7 +47,6 @@ class BrowseAll extends Component{
     componentDidMount(){
         let { movies: allMovies } = this.props;
         this.setState({ allMovies });
-        console.log(  allMovies )
     }
     render() {
         const filterOptions = [
