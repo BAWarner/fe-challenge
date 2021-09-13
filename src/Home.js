@@ -1,5 +1,8 @@
 import './Home.css';
 import { useFetchAllMovies } from './rest';
+import BrowseAll from 'components/BrowseAll';
+import PopularList from 'components/PopularList';
+import GenreList from 'components/GenreList';
 
 /**
  * You have the option to use either REST
@@ -10,30 +13,28 @@ import { useFetchAllMovies } from './rest';
  * Use `graphql/useAllMoviesQuery` instead for
  * GraphQL.
  **/
-const Home = () => {
+const Home = ( props ) => {
   const { data, loading } = useFetchAllMovies();
+  
+  var genreArr = [];
+  data.forEach( movie => {
+    movie.genres.forEach( genre => genreArr.indexOf(genre) === -1 ? genreArr.push( genre ) : '' )
+  } );
+  
 
   return (
     <div className="home-container">
-      <h1>Popular Movies</h1>
+      <PopularList movies={ data } />
+      <GenreList genres={ genreArr }/>
 
-      {loading ? (
+      { loading ? (
         <div>Loading movies...</div>
-      ) : (
-        <ol>
-          {data.map(movie => (
-            <li key={movie.id}>
-              {movie.title}
-              <ul>
-                <li>Release Date: {movie.releaseDate}</li>
-                <li>Description: {movie.overview}</li>
-                <li>Average Vote: {movie.voteAverage}</li>
-                <li>Total Votes: {movie.voteCount}</li>
-                <li>Genres: {movie.genres.join(', ')}</li>
-              </ul>
-            </li>
-          ))}
-        </ol>
+        ) : (
+          <div className='container mrg-top-30'>
+            <div className='flex-100 row spaceBetween'>
+              <BrowseAll movies={ data } />
+            </div>
+          </div>
       )}
     </div>
   );
